@@ -1,1 +1,1 @@
-Practice application for creating multi-container applications and using a worker.
+Practice application for creating a multi-container applications that is deployed to AWS.
