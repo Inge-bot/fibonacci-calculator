@@ -1,0 +1,24 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t imationschek/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+# Override default startup command with npm test 
+  - docker run -e CI=true USERNAME/react-test npm test
+
+after_success:
+  - docker build -t imationschek/fibonacci-client ./client
+  - docker build -t imationschek/fibonacci-nginx ./nginx
+  - docker build -t imationschek/fibonacci-server ./server
+  - docker build -t imationschek/fibonacci-worker ./worker
+  # Log in to Docker CLI - echo takes the password and passes it through password standard in
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER-ID" --password-stdin
+  # Push images to Docker Hub
+  - docker push imationschek/fibonacci-client
+  - docker push imationschek/fibonacci-nginx
+  - docker push imationschek/fibonacci-server
+  - docker push imationschek/fibonacci-worker
