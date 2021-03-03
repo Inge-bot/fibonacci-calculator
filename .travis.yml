@@ -8,7 +8,7 @@ before_install:
 
 script:
 # Override default startup command with npm test 
-  - docker run -e CI=true USERNAME/react-test npm test
+  - docker run -e CI=true imationschek/react-test npm test
 
 after_success:
   - docker build -t imationschek/fibonacci-client ./client
