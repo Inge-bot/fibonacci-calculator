@@ -16,7 +16,7 @@ after_success:
   - docker build -t imationschek/fibonacci-server ./server
   - docker build -t imationschek/fibonacci-worker ./worker
   # Log in to Docker CLI - echo takes the password and passes it through password standard in
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER-ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u imationschek --password-stdin
   # Push images to Docker Hub
   - docker push imationschek/fibonacci-client 
   - docker push imationschek/fibonacci-nginx
