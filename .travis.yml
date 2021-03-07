@@ -22,3 +22,15 @@ after_success:
   - docker push imationschek/fibonacci-nginx
   - docker push imationschek/fibonacci-server  
   - docker push imationschek/fibonacci-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-eu-west-1-414651232202'
+  bucket_path: 'fibonacci-calculator'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
