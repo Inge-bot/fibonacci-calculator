@@ -31,6 +31,6 @@ deploy:
   bucket_name: 'elasticbeanstalk-eu-west-1-414651232202'
   bucket_path: 'fibonacci-calculator'
   on:
-    branch: main
+    branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
